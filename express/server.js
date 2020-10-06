@@ -30,7 +30,7 @@ const saveToDatabase = async subscription => {
 };
 
 // The new /save-subscription endpoint
-app.post("/save-subscription", async (req, res) => {
+router.post("/save-subscription", async (req, res) => {
   const subscription = req.body;
   await saveToDatabase(subscription); //Method to save the subscription to Database
   res.json({ message: "success" });
@@ -54,7 +54,7 @@ const sendNotification = (subscription, dataToSend) => {
 };
 
 //route to test send notification
-app.get("/send-notification", (req, res) => {
+router.get("/send-notification", (req, res) => {
   const subscription = dummyDb.subscription //get subscription from your databse here.
   const message = "Hello World"
   sendNotification(subscription, message);
