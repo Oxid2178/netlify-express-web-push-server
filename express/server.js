@@ -49,7 +49,7 @@ webpush.setVapidDetails(
 );
 
 //function to send the notification to the subscribed device
-const sendNotification = (subscription, dataToSend) => {
+const sendNotification = async (subscription, dataToSend) => {
   webpush.sendNotification(subscription, dataToSend);
 };
 
@@ -57,7 +57,7 @@ const sendNotification = (subscription, dataToSend) => {
 router.get("/send-notification", (req, res) => {
   const subscription = dummyDb.subscription //get subscription from your databse here.
   const message = "Hello World"
-  sendNotification(subscription, message);
+  await sendNotification(subscription, message);
   res.json({ message: "message sent" });
 });
 
