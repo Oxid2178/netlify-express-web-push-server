@@ -7,11 +7,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const webpush = require("web-push");
 
-app.use(bodyParser.json());
-app.use('/.netlify/functions/server', router);  // path must route to lambda
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
-app.use(cors()); // allow access from any origin
-
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -62,6 +57,11 @@ router.get("/send-notification", async (req, res) => {
   await sendNotification(subscription, message);
   res.json({ message: "message sent" });
 });
+
+app.use(bodyParser.json());
+app.use('/.netlify/functions/server', router);  // path must route to lambda
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+app.use(cors()); // allow access from any origin
 
 module.exports = app;
 module.exports.handler = serverless(app);
