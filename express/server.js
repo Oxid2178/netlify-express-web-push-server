@@ -7,6 +7,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const webpush = require("web-push");
 
+app.use(bodyParser.json());
+app.use('/.netlify/functions/server', router);  // path must route to lambda
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+app.use(cors()); // allow access from any origin
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -34,8 +39,8 @@ router.post("/save-subscription", async (req, res) => {
 });
 
 const vapidKeys = {
-  publicKey: "BJYgfnAO5L9oTBFyTcHYdTgyf1gcGb08FBNRvzVStaA0r0_nHUQMTz9-wNhwD2ss3cluAAGfqo5ath4MwKwMKhk",
-  privateKey: "O_VJ8JLL7gpaz81_kUvPiZH7bPV0rzF943sgpLIjncE",
+  publicKey: "BCceksRUt3O_5PecSr4FR33qiqWYRULlR-qkCdIE5I0yKQ_WMyMwUF7u-QHOAiKpyAT9SkAzoyrqLm1xub_WmiA",
+  privateKey: "FRQaRGkuVguG8i3PlxAoSjazHBH3MRj-ywuTkXsN9HY",
 }
 
 //setting our previously generated VAPID keys
@@ -57,10 +62,6 @@ router.get("/send-notification", async (req, res) => {
   await sendNotification(subscription, message);
   res.json({ message: "message sent" });
 });
-
-app.use(bodyParser.json());
-app.use('/.netlify/functions/server', router);  // path must route to lambda
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;
 module.exports.handler = serverless(app);
