@@ -37,8 +37,8 @@ router.post("/save-subscription", async (req, res) => {
 });
 
 const vapidKeys = {
-  publicKey: "BCceksRUt3O_5PecSr4FR33qiqWYRULlR-qkCdIE5I0yKQ_WMyMwUF7u-QHOAiKpyAT9SkAzoyrqLm1xub_WmiA",
-  privateKey: "FRQaRGkuVguG8i3PlxAoSjazHBH3MRj-ywuTkXsN9HY",
+  publicKey: "BO2VWBsugZsT1Xx4KbigaTSkXgr_eBJYa7_Xk3NJ7ELOcjD2wsGIxF1rYpUNybF_aiH9SAysQw4iFsrbC8Tec1k",
+  privateKey: "DJC5V0Y_3fsVvGTxwKNHNenfFVfsk5xQB7jCqRBJe2Q",
 }
 
 //setting our previously generated VAPID keys
