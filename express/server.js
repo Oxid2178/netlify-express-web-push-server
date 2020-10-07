@@ -21,7 +21,9 @@ router.get('/', (req, res) => {
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
-const dummyDb = { subscription: null }; //dummy in memory store
+//const dummyDb = { subscription: null }; //dummy in memory store
+
+const dummyDb = { subscription: {"endpoint":"https://fcm.googleapis.com/fcm/send/fBmsPugxrCA:APA91bHQbRJqBprTwkMzYkc6Nck3pEKnFiQUCLtfKqS6lC2oRg0Y48ra0vVbqEkK1R3sVW7Besk1Antwcj286OjeinPs1rh7_xFociYGtY_T6FUeO9okWeDCuo5vOMbXYaKoRyNc1_47","expirationTime":null,"keys":{"p256dh":"BFk51WEEehspDGHByutFGr1hlzLn2Vyl3Pdwo0C4Ry7rFkYuB_ubB_JdwsxJGG-fDOrAChlwlHSnBihA99MBC-k","auth":"NWkXyy5ApSUPMBvV3wx2kQ"}}}
 
 const saveToDatabase = async subscription => {
   // Since this is a demo app, I am going to save this in a dummy in memory store. Do not do this in your apps.
@@ -32,7 +34,7 @@ const saveToDatabase = async subscription => {
 // The new /save-subscription endpoint
 router.post("/save-subscription", async (req, res) => {
   const subscription = req.body;
-  await saveToDatabase(subscription); //Method to save the subscription to Database
+  //await saveToDatabase(subscription); //Method to save the subscription to Database
   res.json({ message: "success" });
 });
 
