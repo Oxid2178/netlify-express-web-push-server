@@ -7,10 +7,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const webpush = require("web-push");
 
-app.use(cors()); // allow access from any origin
+app.use(cors()); // allow access from any origin ! important must be declared here on top !
 
 const router = express.Router();
-router.use(cors());
 
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
