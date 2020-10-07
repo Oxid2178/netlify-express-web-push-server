@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const webpush = require("web-push");
 
 const router = express.Router();
+
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<h1>Hello from Express.js!</h1>');
@@ -54,7 +55,7 @@ const sendNotification = async (subscription, dataToSend) => {
 };
 
 //route to test send notification
-router.get("/send-notification", (req, res) => {
+router.get("/send-notification", async (req, res) => {
   const subscription = dummyDb.subscription //get subscription from your databse here.
   const message = "Hello World"
   await sendNotification(subscription, message);
