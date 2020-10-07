@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const webpush = require("web-push");
 
 const router = express.Router();
+router.use(cors());
 
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
